@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GazeButton : MonoBehaviour {
 
@@ -14,10 +15,15 @@ public class GazeButton : MonoBehaviour {
 	//public WWW url;
 	//public GvrVideoPlayerTexture
 	private PlayVideo thePlayVideo;
+	public Camera theCamera;
 
 
 	// Use this for initialization
 	void Start () {
+
+		if (theCamera == null)
+			theCamera = GameObject.Find ("Main Camera").GetComponent<Camera> ();
+
 		if(streamImg == null)
 			streamImg = GameObject.Find ("StreamImage").GetComponent<Image>();
 		
@@ -47,18 +53,22 @@ public class GazeButton : MonoBehaviour {
 			if (progress.value >= progress.maxValue /*&& buttonPress*/) {
 				if (toStream) {
 					streamImg.color = Color.gray;
-					streamImg.gameObject.SetActive (false);
+					/*streamImg.gameObject.SetActive (false);
 					downImg.gameObject.SetActive (false);
 					progress.gameObject.SetActive (false);
 					txt.gameObject.SetActive (false);
-					thePlayVideo.Stream ();
+					//FlipCameraView ();
+					thePlayVideo.Stream ();*/
+					SceneManager.LoadScene("_sceneStream");
 				} else {
 					downImg.color = Color.gray;
-					streamImg.gameObject.SetActive (false);
+					/*streamImg.gameObject.SetActive (false);
 					downImg.gameObject.SetActive (false);
 					progress.gameObject.SetActive (false);
 					txt.gameObject.SetActive (false);
-					thePlayVideo.Download ();
+					//FlipCameraView ();
+					thePlayVideo.Download ();*/
+					SceneManager.LoadScene("_sceneDown");
 				}
 				
 			}
@@ -96,5 +106,14 @@ public class GazeButton : MonoBehaviour {
 	public bool GetCondition(){
 		return toStream;
 	}
+	/*
+	public void FlipCameraView(){
+		theCamera.ResetWorldToCameraMatrix ();
+		theCamera.ResetProjectionMatrix ();
+		Matrix4x4 mat = theCamera.projectionMatrix;
+		mat *= Matrix4x4.Scale(new Vector3(-1,1,1));
+		theCamera.projectionMatrix = mat;
+
+	}*/
 		
 }

@@ -8,6 +8,8 @@ public class FlipNormals : MonoBehaviour {
 	void Start () {
 		Mesh mesh = this.GetComponent<MeshFilter> ().mesh;
 
+		Vector2[] flippedUV = mesh.uv;
+
 		Vector3[] normals = mesh.normals;
 
 		for (int i = 0; i < normals.Length; i++) {
@@ -15,7 +17,12 @@ public class FlipNormals : MonoBehaviour {
 				normals [i] *= -1;
 		}
 
+		for (int i = 0; i < flippedUV.Length; i++) {
+			flippedUV [i].x = 1 - flippedUV [i].x; 
+		}
+
 		mesh.normals = normals;
+		mesh.uv = flippedUV;
 
 		for (int i = 0; i < mesh.subMeshCount; i++) {
 			int[] tris = mesh.GetTriangles (i);
