@@ -53,22 +53,22 @@ public class GazeButton : MonoBehaviour {
 			if (progress.value >= progress.maxValue /*&& buttonPress*/) {
 				if (toStream) {
 					streamImg.color = Color.gray;
-					/*streamImg.gameObject.SetActive (false);
+					streamImg.gameObject.SetActive (false);
 					downImg.gameObject.SetActive (false);
 					progress.gameObject.SetActive (false);
 					txt.gameObject.SetActive (false);
 					//FlipCameraView ();
-					thePlayVideo.Stream ();*/
-					SceneManager.LoadScene("_sceneStream");
+					thePlayVideo.Stream ();
+					//SceneManager.LoadScene("_sceneStream");
 				} else {
 					downImg.color = Color.gray;
-					/*streamImg.gameObject.SetActive (false);
+					streamImg.gameObject.SetActive (false);
 					downImg.gameObject.SetActive (false);
 					progress.gameObject.SetActive (false);
 					txt.gameObject.SetActive (false);
 					//FlipCameraView ();
-					thePlayVideo.Download ();*/
-					SceneManager.LoadScene("_sceneDown");
+					thePlayVideo.Download ();
+					//SceneManager.LoadScene("_sceneDown");
 				}
 				
 			}
